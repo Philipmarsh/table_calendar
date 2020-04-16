@@ -385,12 +385,13 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
       ),
         ],
       ),
+      _buildActionButton()
 
     ];
 
-    if (widget.calendarActionButton.child != null){
-      children.insert(1, _buildActionButton());
-    }
+//    if (widget.calendarActionButton.child != null){
+//      children.insert(1, _buildActionButton());
+//    }
 //    if (widget.headerStyle.formatButtonVisible && widget.availableCalendarFormats.length > 1) {
 //      children.insert(2, const SizedBox(width: 8.0));
 //      children.insert(3, _buildFormatButton());
