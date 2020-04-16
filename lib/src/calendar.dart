@@ -50,6 +50,9 @@ class TableCalendar extends StatefulWidget {
   /// Use it to update `events`, `holidays`, etc.
   final CalendarController calendarController;
 
+  /// Material button that will display in the calendar header
+  final CalendarActionButton calendarActionButton;
+
   /// Locale to format `TableCalendar` dates with, for example: `'en_US'`.
   ///
   /// If nothing is provided, a default locale will be used.
@@ -164,6 +167,7 @@ class TableCalendar extends StatefulWidget {
   TableCalendar({
     Key key,
     @required this.calendarController,
+    this.calendarActionButton,
     this.locale,
     this.events = const {},
     this.holidays = const {},
@@ -353,12 +357,15 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
 
   Widget _buildHeader() {
     final children = [
-      _CustomIconButton(
-        icon: widget.headerStyle.leftChevronIcon,
-        onTap: _selectPrevious,
-        margin: widget.headerStyle.leftChevronMargin,
-        padding: widget.headerStyle.leftChevronPadding,
-      ),
+      Row(
+        children: <Widget>[
+          _CustomIconButton(
+            icon: widget.headerStyle.leftChevronIcon,
+            onTap: _selectPrevious,
+            margin: widget.headerStyle.leftChevronMargin,
+            padding: widget.headerStyle.leftChevronPadding,
+          ),
+
       GestureDetector(
         onTap: _onHeaderTapped,
         onLongPress: _onHeaderLongPressed,
@@ -376,8 +383,14 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
         margin: widget.headerStyle.rightChevronMargin,
         padding: widget.headerStyle.rightChevronPadding,
       ),
+        ],
+      ),
+
     ];
 
+    if (widget.calendarActionButton.child != null){
+      children.insert(1, _buildActionButton());
+    }
 //    if (widget.headerStyle.formatButtonVisible && widget.availableCalendarFormats.length > 1) {
 //      children.insert(2, const SizedBox(width: 8.0));
 //      children.insert(3, _buildFormatButton());
@@ -388,6 +401,7 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
       margin: widget.headerStyle.headerMargin,
       padding: widget.headerStyle.headerPadding,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: children,
       ),
@@ -407,6 +421,16 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
 //      ),
 //    );
 //  }
+
+  Widget _buildActionButton() {
+    return MaterialButton(
+      onPressed: widget.calendarActionButton.onPressed,
+      elevation: widget.calendarActionButton.elevation,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(200)),
+      child: widget.calendarActionButton.child,
+      color: widget.calendarActionButton.color,
+    );
+  }
 
   Widget _buildCalendarContent() {
     if (widget.formatAnimation == FormatAnimation.slide) {
