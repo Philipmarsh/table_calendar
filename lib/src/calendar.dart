@@ -424,12 +424,15 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
 //  }
 
   Widget _buildActionButton() {
-    return MaterialButton(
-      onPressed: widget.calendarActionButton.onPressed,
-      elevation: widget.calendarActionButton.elevation,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(200)),
-      child: widget.calendarActionButton.child,
-      color: widget.calendarActionButton.color,
+    return Padding(
+      padding: EdgeInsets.all(widget.calendarActionButton.padding),
+      child: MaterialButton(
+        onPressed: widget.calendarActionButton.onPressed,
+        elevation: widget.calendarActionButton.elevation,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(200)),
+        child: widget.calendarActionButton.child,
+        color: widget.calendarActionButton.color,
+      ),
     );
   }
 

@@ -14,10 +14,14 @@ class CalendarActionButton{
   /// Defines child for the material button
   final Widget child;
 
+  /// Defines padding for the material button
+  final double padding;
+
   /// Defines color of material button
   final Color color;
 
   CalendarActionButton({
+    this.padding = 8,
     this.onPressed,
     this.elevation,
     @required this.child,
