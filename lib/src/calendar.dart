@@ -277,11 +277,11 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
     }
   }
 
-  void _toggleCalendarFormat() {
-    setState(() {
-      widget.calendarController.toggleCalendarFormat();
-    });
-  }
+//  void _toggleCalendarFormat() {
+//    setState(() {
+//      widget.calendarController.toggleCalendarFormat();
+//    });
+//  }
 
   void _onHorizontalSwipe(DismissDirection direction) {
     if (direction == DismissDirection.startToEnd) {
@@ -359,17 +359,15 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
         margin: widget.headerStyle.leftChevronMargin,
         padding: widget.headerStyle.leftChevronPadding,
       ),
-      Expanded(
-        child: GestureDetector(
-          onTap: _onHeaderTapped,
-          onLongPress: _onHeaderLongPressed,
-          child: Text(
-            widget.headerStyle.titleTextBuilder != null
-                ? widget.headerStyle.titleTextBuilder(widget.calendarController.focusedDay, widget.locale)
-                : DateFormat.yMMMM(widget.locale).format(widget.calendarController.focusedDay),
-            style: widget.headerStyle.titleTextStyle,
-            textAlign: widget.headerStyle.centerHeaderTitle ? TextAlign.center : TextAlign.start,
-          ),
+      GestureDetector(
+        onTap: _onHeaderTapped,
+        onLongPress: _onHeaderLongPressed,
+        child: Text(
+          widget.headerStyle.titleTextBuilder != null
+              ? widget.headerStyle.titleTextBuilder(widget.calendarController.focusedDay, widget.locale)
+              : DateFormat.yMMMM(widget.locale).format(widget.calendarController.focusedDay),
+          style: widget.headerStyle.titleTextStyle,
+          textAlign: widget.headerStyle.centerHeaderTitle ? TextAlign.center : TextAlign.start,
         ),
       ),
       _CustomIconButton(
@@ -380,10 +378,10 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
       ),
     ];
 
-    if (widget.headerStyle.formatButtonVisible && widget.availableCalendarFormats.length > 1) {
-      children.insert(2, const SizedBox(width: 8.0));
-      children.insert(3, _buildFormatButton());
-    }
+//    if (widget.headerStyle.formatButtonVisible && widget.availableCalendarFormats.length > 1) {
+//      children.insert(2, const SizedBox(width: 8.0));
+//      children.insert(3, _buildFormatButton());
+//    }
 
     return Container(
       decoration: widget.headerStyle.decoration,
@@ -396,19 +394,19 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
     );
   }
 
-  Widget _buildFormatButton() {
-    return GestureDetector(
-      onTap: _toggleCalendarFormat,
-      child: Container(
-        decoration: widget.headerStyle.formatButtonDecoration,
-        padding: widget.headerStyle.formatButtonPadding,
-        child: Text(
-          widget.calendarController._getFormatButtonText(),
-          style: widget.headerStyle.formatButtonTextStyle,
-        ),
-      ),
-    );
-  }
+//  Widget _buildFormatButton() {
+//    return GestureDetector(
+//      onTap: _toggleCalendarFormat,
+//      child: Container(
+//        decoration: widget.headerStyle.formatButtonDecoration,
+//        padding: widget.headerStyle.formatButtonPadding,
+//        child: Text(
+//          widget.calendarController._getFormatButtonText(),
+//          style: widget.headerStyle.formatButtonTextStyle,
+//        ),
+//      ),
+//    );
+//  }
 
   Widget _buildCalendarContent() {
     if (widget.formatAnimation == FormatAnimation.slide) {
